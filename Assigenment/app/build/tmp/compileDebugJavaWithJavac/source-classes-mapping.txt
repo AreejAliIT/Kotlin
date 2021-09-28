@@ -1,0 +1,4 @@
+com/example/assigenment/BuildConfig.java
+ com.example.assigenment.BuildConfig
+com/example/assigenment/MainActivity.java
+ com.example.assigenment.MainActivity

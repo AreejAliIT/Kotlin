@@ -1,0 +1,5 @@
+com/example/lab5/MainActivity.java
+ com.example.lab5.MainActivity
+ com.example.lab5.MainActivity$handleButton
+com/example/lab5/BuildConfig.java
+ com.example.lab5.BuildConfig
