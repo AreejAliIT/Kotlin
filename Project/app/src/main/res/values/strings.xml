@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">Project</string>
+    <string name="img" />
+    <string name="insert">Add</string>
+    <string name="view">View</string>
+    <string name="enter_date">Enter Date:</string>
+    <string name="hospital_clinic">Hospital \ Clinic</string>
+    <string name="textview" />
+    <string name="fill_the_appointment_information">Fill the appointment information:</string>
+    <string name="drname">Dr.Name:</string>
+
+
+    <string-array name="menu">
+        <item>Choose:</item>
+        <item>Home</item>
+        <item>Add</item>
+        <item>View</item>
+
+    </string-array>
+
+</resources>
