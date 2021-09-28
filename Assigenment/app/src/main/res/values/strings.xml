@@ -1,9 +1,0 @@
-<resources>
-    <string name="app_name">Assigenment</string>
-    <string name="Insert">Insert</string>
-    <string name="Update">Update</string>
-    <string name="Delete">Delete</string>
-    <string name="View">View</string>
-    <string name="deleteAll">deleteAll</string>
-    <string name="areej_ali_database">Areej Ali Database!!</string>
-</resources>
