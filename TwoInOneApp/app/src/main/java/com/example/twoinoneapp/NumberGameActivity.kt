@@ -2,6 +2,7 @@ package com.example.twoinoneapp
 
 import android.content.DialogInterface
 import android.content.Intent
+import android.content.SharedPreferences
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -19,14 +20,16 @@ import kotlin.random.Random
 
 class NumberGameActivity : AppCompatActivity() {
     private lateinit var myCL1: ConstraintLayout
-    private lateinit var input : EditText
-    private lateinit var guessBtn : Button
+    private lateinit var input: EditText
+    private lateinit var guessBtn: Button
     private lateinit var messages: ArrayList<String>
-    private lateinit var textView : TextView
-    private lateinit var rv : RecyclerView
+    private lateinit var textView: TextView
+    private lateinit var rv: RecyclerView
     private var guesses = 3
     var someNumber: Int = 0
     var myMessage: String = ""
+
+    private lateinit var sharedPreferences: SharedPreferences
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,20 +40,27 @@ class NumberGameActivity : AppCompatActivity() {
         messages = ArrayList()
 
         rv = findViewById<RecyclerView>(R.id.rv1)
-        rv.adapter = Message(this , messages)
-        rv.layoutManager= LinearLayoutManager(this)
+        rv.adapter = Message(this, messages)
+        rv.layoutManager = LinearLayoutManager(this)
 
         textView = findViewById(R.id.textView)
         input = findViewById(R.id.input)
         guessBtn = findViewById(R.id.btn)
         guessBtn.setOnClickListener {
-            if(isNumber(input.text.toString())){
+            // check the input only numbers
+            if (isNumber(input.text.toString())) {
                 checkGuess(input.text.toString())
-            }else{
+            } else {
                 Snackbar.make(myCL1, "Please enter numbers only!", Snackbar.LENGTH_LONG).show()
             }
         }
+        // change title of the page
+        title = "Numbers Game"
+        //auto scroller
+
     }
+
+    // Save data on Rotating the device
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         outState.putInt("myNumber", someNumber)
@@ -58,9 +68,21 @@ class NumberGameActivity : AppCompatActivity() {
     }
     override fun onRestoreInstanceState(savedInstanceState: Bundle) {
         super.onRestoreInstanceState(savedInstanceState)
-        someNumber= savedInstanceState.getInt("myNumber", 0)
+        someNumber = savedInstanceState.getInt("myNumber", 0)
         myMessage = savedInstanceState.getString("myMessage", "No Message")
     }
+
+    //shared preference
+//    sharedPreferences = this.getSharedPreferences(
+//    getString(R.string.preference_file_key), Context.MODE_PRIVATE)
+//    myMessage = sharedPreferences.getString("myMessage", "").toString()  // --> retrieves data from Shared Preferences
+//// We can save data with the following code
+//    with(sharedPreferences.edit()) {
+//        putString("myMessage", myMessage)
+//        apply()
+//}
+
+
     private fun checkGuess(inpu : String){
         val random = Random.nextInt(10)
 
@@ -87,38 +109,45 @@ class NumberGameActivity : AppCompatActivity() {
     private fun isNumber(s: String?): Boolean {
         return if (s.isNullOrEmpty()) false else s.all { Character.isDigit(it) }
     }
+
+    // show Alert with two options
     private fun showAlertDialog(title: String) {
-        // build alert dialog
+        // 1 build alert dialog
         val dialogBuilder = AlertDialog.Builder(this)
-        // set message of alert dialog
+        // 2 set message of alert dialog
         dialogBuilder.setMessage(title)
-            // if the dialog is cancelable
+            //  3 if the dialog is cancelable
             .setCancelable(false)
-            // positive button text and action
+            // 4 -a positive button text and action
             .setPositiveButton("Yes", DialogInterface.OnClickListener {
                     dialog, id -> this.recreate()
             })
-            // negative button text and action
+            // 4 -b negative button text and action
             .setNegativeButton("No", DialogInterface.OnClickListener {
                     dialog, id -> dialog.cancel()
             })
-        // create dialog box
+        // 5 create dialog box
         val alert = dialogBuilder.create()
-        // set title for alert dialog box
+        //  6 set title for alert dialog box
         alert.setTitle("Game Over")
-        // show alert dialog
+        // 7 show alert dialog
         alert.show()
     }
+
+    //                       MENU
+    // change title on menu
     override fun onPrepareOptionsMenu(menu: Menu?): Boolean {
         val item: MenuItem = menu!!.getItem(0)
         item.title = "New Game"
         return super.onPrepareOptionsMenu(menu)
     }
+    // set menu to inflater
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         super.onCreateOptionsMenu(menu)
         menuInflater.inflate(R.menu.main_menu , menu)
         return true
     }
+    // set action when item selected
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
             R.id.game1 -> {

@@ -12,7 +12,9 @@ class Message(private val context: Context, private val messages:ArrayList<Strin
     RecyclerView.Adapter<Message.ViewHolder>(){
 
     class ViewHolder(itemView : View):RecyclerView.ViewHolder(itemView)
+    // for binding
     private lateinit var guessText : TextView
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
             LayoutInflater.from(context).inflate(
@@ -22,16 +24,13 @@ class Message(private val context: Context, private val messages:ArrayList<Strin
             )
         )
     }
-
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         var msg = messages[position]
         holder.itemView.apply {
+            // for binding
             guessText = findViewById(R.id.guessText)
             guessText.text = msg
         }
     }
-
     override fun getItemCount() = messages.size
-
-
 }

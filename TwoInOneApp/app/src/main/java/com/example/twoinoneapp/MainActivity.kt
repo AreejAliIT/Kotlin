@@ -24,7 +24,7 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this , GuessPhraseActivity::class.java)
             startActivity(intent)
         }
-
+        title = "Main Activity"
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -37,7 +37,6 @@ class MainActivity : AppCompatActivity() {
         item.isEnabled = false
         return super.onPrepareOptionsMenu(menu)
     }
-
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
             R.id.game1 -> {

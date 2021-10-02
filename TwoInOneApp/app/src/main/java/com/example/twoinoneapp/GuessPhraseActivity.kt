@@ -47,7 +47,11 @@ class GuessPhraseActivity : AppCompatActivity() {
 
         convertLetterToSatr(answer)
         btn.setOnClickListener {  checkGuess(input.text.toString())}
+
+        title = "Guess the Phrase"
     }
+
+
     private fun convertLetterToSatr(answer:String) {
         for(e in answer.indices){
             if(answer[e].equals(" ")) {
@@ -77,12 +81,12 @@ class GuessPhraseActivity : AppCompatActivity() {
         rvMain.adapter?.notifyDataSetChanged()
     }
 
+
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         super.onCreateOptionsMenu(menu)
         menuInflater.inflate(R.menu.main_menu , menu)
         return true
     }
-
     override fun onPrepareOptionsMenu(menu: Menu?): Boolean {
         val item: MenuItem = menu!!.getItem(1)
         item.title = "New Game"
