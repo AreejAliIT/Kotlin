@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">AreejAlbarqi</string>
+    <string name="score">TextView</string>
+    <string name="high_score">High score</string>
+    <string name="equTextView">TextView</string>
+    <string name="string_equtextview">3+3=</string>
+    <string name="button">Button</string>
+    <string name="high_score_2">High Score : 2</string>
+    <string name="score1">Score:</string>
+
+    // for shared preference
+    <string name="preference_file_key">com.example.areejalbarqi.PREFERENCE_FILE_KEY</string>
+</resources>
