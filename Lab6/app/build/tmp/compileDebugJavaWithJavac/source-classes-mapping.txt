@@ -1,5 +1,0 @@
-com/example/lab6/MainActivity.java
- com.example.lab6.MainActivity
- com.example.lab6.MainActivity$1
-com/example/lab6/BuildConfig.java
- com.example.lab6.BuildConfig
