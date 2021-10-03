@@ -1,7 +1,9 @@
 package com.example.todoapp
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.DialogInterface
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.EditText
@@ -19,6 +21,10 @@ class MainActivity : AppCompatActivity() {
     private lateinit var rvMain : RecyclerView
     private lateinit var tasks : ArrayList<String>
 
+
+    var myTaks: String = ""
+   lateinit var sharedPreferences : SharedPreferences
+   var myMessage = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -34,9 +40,28 @@ class MainActivity : AppCompatActivity() {
         plusBtn.setOnClickListener(){
             showAlert("Enter yor task: ")
         }
+        //shared preference
+        sharedPreferences = this.getSharedPreferences(
+            getString(R.string.preference_file_key), Context.MODE_PRIVATE)
+        myMessage = sharedPreferences.getString("myMessage", "").toString()  // --> retrieves data from Shared Preferences
+// We can save data with the following code
+        with(sharedPreferences.edit())
+        {
+            putString("myMessage", myMessage)
+            apply()
+        }
 
     }
 
+    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
+        super.onRestoreInstanceState(savedInstanceState)
+        myTaks = savedInstanceState.getString("myTasks", "No task")
+    }
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+
+        outState.putString("myTasks", myTaks)
+    }
     private fun showAlert(title:String) {
         // 1 build alert dialog
         val dialogBuilder = AlertDialog.Builder(this)

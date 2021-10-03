@@ -1,11 +1,13 @@
 package com.example.twoinoneapp
 
+import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
 import android.content.SharedPreferences
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.Settings.Global.putString
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Button
@@ -56,8 +58,19 @@ class NumberGameActivity : AppCompatActivity() {
         }
         // change title of the page
         title = "Numbers Game"
-        //auto scroller
+        //auto scroller after add
+//        rvMain.adapter?.notifyDataSetChanged()
 
+        //shared preference
+        sharedPreferences = this.getSharedPreferences(
+            getString(R.string.preference_file_key), Context.MODE_PRIVATE)
+        myMessage = sharedPreferences.getString("myMessage", "").toString()  // --> retrieves data from Shared Preferences
+// We can save data with the following code
+        with(sharedPreferences.edit())
+        {
+            putString("myMessage", myMessage)
+            apply()
+        }
     }
 
     // Save data on Rotating the device
@@ -72,15 +85,7 @@ class NumberGameActivity : AppCompatActivity() {
         myMessage = savedInstanceState.getString("myMessage", "No Message")
     }
 
-    //shared preference
-//    sharedPreferences = this.getSharedPreferences(
-//    getString(R.string.preference_file_key), Context.MODE_PRIVATE)
-//    myMessage = sharedPreferences.getString("myMessage", "").toString()  // --> retrieves data from Shared Preferences
-//// We can save data with the following code
-//    with(sharedPreferences.edit()) {
-//        putString("myMessage", myMessage)
-//        apply()
-//}
+
 
 
     private fun checkGuess(inpu : String){
