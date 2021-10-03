@@ -1,4 +1,0 @@
-#Wed Feb 10 13:21:06 AST 2021
-base.0=/Users/areejsmac/AndroidStudioProjects/FirstApp/app/build/intermediates/dex/debug/mergeDexDebug/classes.dex
-path.0=classes.dex
-renamed.0=classes.dex
