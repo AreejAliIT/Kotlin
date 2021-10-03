@@ -1,5 +1,0 @@
-com/example/lab5last/BuildConfig.java
- com.example.lab5last.BuildConfig
-com/example/lab5last/MainActivity.java
- com.example.lab5last.MainActivity
- com.example.lab5last.MainActivity$handleButton
